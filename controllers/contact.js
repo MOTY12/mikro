@@ -10,12 +10,12 @@ const addcontact = async(req, res) => {
         email: req.body.email,
         phonenumber: req.body.phonenumber,
     }
-    const motyety = addcontact.phoneNumber
-        // const numberalreadyexist = await Contact.findOne({ motyety })
-        // console.log(numberalreadyexist)
-        // if (numberalreadyexist) {
-        //     res.send(`Number already exist`)
-        // }
+    const checkphonenumber = addcontact.phoneNumber
+    const numberalreadyexist = await Contact.findOne({ checkphonenumber })
+    console.log(numberalreadyexist)
+    if (numberalreadyexist) {
+        res.send(`Number already exist`)
+    }
 
     const contactsaved = await Contact.create(addcontact)
 
