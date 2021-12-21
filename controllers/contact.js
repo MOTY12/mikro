@@ -3,45 +3,57 @@ const ErrorHandler = require("../utils/errorhandler")
 const Contact = require("../model/contact")
 const ApiFeatures = require("../utils/apifeatures");
 
+
+
+let ContactList = [{
+        "fullName": "mukhtar yusuf",
+        "email": "mukhtar2944",
+        "phonenumber": "08033033774"
+    }, {
+        "fullName": " yusuf",
+        "email": "mukhtar2944",
+        "phonenumber": "08033472025"
+    },
+    {
+        "fullName": " yusuf",
+        "email": "mukhtar2944",
+        "phonenumber": "08033457774"
+    }
+]
+
+
 const addcontact = async(req, res) => {
-    // const { fullName, email, phonenumber } = req.body;
-    const addcontact = {
-        fullName: req.body.fullName,
-        email: req.body.email,
-        phonenumber: req.body.phonenumber,
-    }
-    const checkphonenumber = addcontact.phoneNumber
-    const numberalreadyexist = await Contact.findOne({ checkphonenumber })
-    console.log(numberalreadyexist)
-    if (numberalreadyexist) {
-        res.send(`Number already exist`)
+    const addcontact = req.body
+
+    const phoneNo = addcontact.phonenumber
+    const savephoneNo = ContactList.phonenumber
+    console.log(savephoneNo)
+
+    if (phoneNo == savephoneNo) {
+        res.send('phonenumber already exist')
     }
 
-    const contactsaved = await Contact.create(addcontact)
+    ContactList.push(addcontact)
 
-    if (!contactsaved) return res.send('not save')
-    res.send(contactsaved)
+    res.send(`number ${addcontact.phonenumber} is added to the database`)
 
 }
-
 
 const getuniquenumber = async(req, res) => {
 
     var response = [];
+
     if (req.query.phonenumber) {
-        response = await Contact.find({ phonenumber: req.query.phonenumber });
-        res.json(response);
-    } else {
-        res.json('no number found')
+        let phonenumber = req.query.phonenumber
+        response = ContactList.find((Contact) => Contact.phonenumber === phonenumber);
+        res.send(response);
     }
 }
 
 const getallcontact = async(req, res) => {
-    const getallphonenumber = await Contact.find()
-    if (!getallphonenumber) {
-        res.status(500).json({ success: false })
-    }
-    res.send(getallphonenumber);
+    res.send(ContactList);
 }
+
+
 
 module.exports = { addcontact, getallcontact, getuniquenumber }
