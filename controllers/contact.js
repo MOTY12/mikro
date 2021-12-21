@@ -23,11 +23,17 @@ const addcontact = async(req, res) => {
     res.send(contactsaved)
 
 }
-const getuniquenumber = async(req, res) => {
-    const apiFeature = new ApiFeatures(Contact.find(), req.query)
-        .search()
-        .filter();
 
+
+const getuniquenumber = async(req, res) => {
+
+    var response = [];
+    if (req.query.phonenumber) {
+        response = await Contact.find({ phonenumber: req.query.phonenumber });
+        res.json(response);
+    } else {
+        res.json('no number found')
+    }
 }
 
 const getallcontact = async(req, res) => {
