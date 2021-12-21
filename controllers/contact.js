@@ -17,15 +17,6 @@ let ContactList = [{
 
 const addcontact = async(req, res) => {
     const addcontact = req.body
-
-    const phoneNo = addcontact.phonenumber
-    const savephoneNo = ContactList.phonenumber
-    console.log(savephoneNo)
-
-    if (phoneNo == savephoneNo) {
-        res.send('phonenumber already exist')
-    }
-
     ContactList.push(addcontact)
 
     res.send(`number ${addcontact.phonenumber} is added to the database`)
