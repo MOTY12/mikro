@@ -1,18 +1,4 @@
-let ContactList = [{
-        "fullName": "mukhtar yusuf",
-        "email": "mukhtar2944",
-        "phonenumber": "08033033774"
-    }, {
-        "fullName": " yusuf",
-        "email": "mukhtar2944",
-        "phonenumber": "08033472025"
-    },
-    {
-        "fullName": " yusuf",
-        "email": "mukhtar2944",
-        "phonenumber": "08033457774"
-    }
-]
+let ContactList = []
 
 
 const addcontact = async(req, res) => {
