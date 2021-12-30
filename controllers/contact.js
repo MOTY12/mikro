@@ -18,14 +18,10 @@ const getallcontact = async(req, res) => {
 
 
 const getuniquenumber = async(req, res) => {
+    let phonenumber = req.query.phonenumber
+    const uniqueNumber = storePhonebok.getuniquecontactlist(phonenumber)
+    console.log(uniqueNumber)
 
-    let response = [];
-
-    if (req.query.phonenumber) {
-        let phonenumber = req.query.phonenumber
-        response = ContactList.find((Contact) => Contact.phonenumber === phonenumber);
-        res.send(response);
-    }
 }
 
 

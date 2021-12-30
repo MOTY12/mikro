@@ -15,8 +15,14 @@ class addPhonebook {
         return this.ContactList
     }
 
-    getuniquecontactlist() {
+    getuniquecontactlist(phoneNumber) {
+        let response = [];
 
+        if (phoneNumber) {
+            let findPhonenumber = phoneNumber
+            response = this.ContactList.find((Contact) => Contact.phonenumber === findPhonenumber);
+            // console.log(response);
+        }
     }
 
 }
