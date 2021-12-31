@@ -1,31 +1,25 @@
-let ContactList = [{
-        "fullName": "mukhtar yusuf",
-        "email": "mukhtar2944",
-        "phonenumber": "08033033774"
-    }, {
-        "fullName": " yusuf",
-        "email": "mukhtar2944",
-        "phonenumber": "08033472025"
-    },
-    {
-        "fullName": " yusuf",
-        "email": "mukhtar2944",
-        "phonenumber": "08033457774"
-    }
-]
+const addPhonebook = require(`../utils/add`)
 
+let storePhonebok = new addPhonebook()
 
 const addcontact = async(req, res) => {
     const addcontact = req.body
-    ContactList.push(addcontact)
 
-    res.send(`number ${addcontact.phonenumber} is added to the database`)
+    let contactsaved = storePhonebok.storeContact(addcontact)
+    res.status(200).send(contactsaved)
 
 }
 
+
+const getallcontact = async(req, res) => {
+    const allcontac = storePhonebok.fetchContact()
+    res.status(200).send(allcontac)
+}
+
+
 const getuniquenumber = async(req, res) => {
 
-    var response = [];
+    let response = [];
 
     if (req.query.phonenumber) {
         let phonenumber = req.query.phonenumber
@@ -33,11 +27,6 @@ const getuniquenumber = async(req, res) => {
         res.send(response);
     }
 }
-
-const getallcontact = async(req, res) => {
-    res.send(ContactList);
-}
-
 
 
 module.exports = { addcontact, getallcontact, getuniquenumber }
