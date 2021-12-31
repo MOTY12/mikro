@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const addPhonebook = require(`../utils/add`)
+=======
+let ContactList = []
+>>>>>>> 93b390cb0970f434ae4d9a3ced28a91567b03a0a
 
 let storePhonebok = new addPhonebook()
 
