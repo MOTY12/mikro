@@ -25,22 +25,6 @@ class addPhonebook {
              // console.log(response);
          }
      }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
 
     fetchContact() {
         return this.ContactList
